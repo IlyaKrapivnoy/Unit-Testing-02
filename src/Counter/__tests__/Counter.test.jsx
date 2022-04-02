@@ -145,3 +145,41 @@ it('adding and then subtracting leads to the correct number', () => {
 
     expect(counterEl.textContent).toBe('15');
 });
+
+it('counter contains correct className', () => {
+    const { getByTestId } = render(<Counter />);
+    const counterEl = getByTestId('counter');
+    const inputEl = getByTestId('input');
+    const subtractBtnEl = getByTestId('subtract-btn');
+    const addBtnEl = getByTestId('add-btn');
+
+    expect(counterEl.className).toBe(' ');
+
+    fireEvent.change(inputEl, {
+        target: {
+            value: '50',
+        },
+    });
+
+    expect(counterEl.className).toBe(' ');
+
+    fireEvent.click(addBtnEl);
+
+    expect(counterEl.className).toBe('green');
+
+    fireEvent.click(addBtnEl);
+
+    expect(counterEl.className).toBE('green');
+
+    fireEvent.click(subtractBtnEl);
+    fireEvent.click(subtractBtnEl);
+
+    expect(counterEl.className).toBe(' ');
+
+    fireEvent.click(subtractBtnEl);
+    fireEvent.click(subtractBtnEl);
+    fireEvent.click(subtractBtnEl);
+    fireEvent.click(subtractBtnEl);
+
+    expect(counterEl.className).toBe('red');
+});
