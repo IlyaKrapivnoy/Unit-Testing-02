@@ -15,6 +15,9 @@ const Counter = () => {
                 data-testid='input'
                 value={inputValue}
                 className='text-center'
+                onChange={(e) => {
+                    setInputValue(e.target.value);
+                }}
             />
             <button data-testid='add-btn'>+</button>
         </div>
