@@ -76,3 +76,20 @@ it('clicking on subtract btn subtracts 1 from counter', () => {
 
     expect(counterEl.textContent).toBe('-1');
 });
+
+it('changing input value then clicking on add btn works correctly', () => {
+    const { getByTestId } = render(<Counter />);
+    const addBtnEl = getByTestId('add-btn');
+    const counterEl = getByTestId('counter');
+    const inputEl = getByTestId('input');
+
+    fireEvent.change(inputEl, {
+        target: {
+            value: '5',
+        },
+    });
+
+    fireEvent.click(addBtnEl);
+
+    expect(counterEl.textContent).toBe('5');
+});
